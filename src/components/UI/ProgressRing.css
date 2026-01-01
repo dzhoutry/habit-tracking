@@ -1,0 +1,21 @@
+.progress-ring {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-ring__track {
+    opacity: 0.3;
+}
+
+.progress-ring__progress {
+    transition: stroke-dashoffset 0.8s ease-out;
+}
+
+.progress-ring__label {
+    position: absolute;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}

@@ -1,0 +1,101 @@
+.habit-calendar {
+    padding: var(--space-md);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+}
+
+.habit-calendar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+}
+
+.habit-calendar__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.habit-calendar__stats-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.habit-calendar__stats {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.habit-calendar__stats-separator {
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-xs);
+}
+
+.habit-calendar__months {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: var(--space-xs);
+}
+
+.habit-calendar__month {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.habit-calendar__month-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.habit-calendar__month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 12px);
+    gap: 3px;
+    width: max-content;
+}
+
+.habit-calendar__day {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: var(--color-bg-tertiary);
+    transition: all var(--transition-fast);
+    cursor: default;
+}
+
+.habit-calendar__day--empty {
+    background: transparent;
+}
+
+.habit-calendar__day:not(.habit-calendar__day--empty):hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.habit-calendar__day--completed {
+    background: var(--color-success);
+}
+
+/* Scrollbar for months container */
+.habit-calendar__months::-webkit-scrollbar {
+    width: 6px;
+}
+
+.habit-calendar__months::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.habit-calendar__months::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: var(--radius-full);
+}

@@ -1,0 +1,108 @@
+.account-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+}
+
+.account-page__header {
+    margin-bottom: var(--space-xl);
+}
+
+.account-page__header h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.account-page__header p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+}
+
+.account-page__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.account-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.account-section__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+/* Profile Form */
+.account-profile__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.account-profile__avatar-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.account-profile__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Password Form */
+.account-password__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.account-password__fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+/* Danger Zone */
+.account-danger {
+    border-color: var(--color-error-light);
+    background: #FFF5F5 !important;
+}
+
+[data-theme='dark'] .account-danger {
+    background: rgba(220, 38, 38, 0.1) !important;
+    border-color: rgba(220, 38, 38, 0.2);
+}
+
+.account-danger__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+}
+
+.account-danger__info h3 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.account-danger__info p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}

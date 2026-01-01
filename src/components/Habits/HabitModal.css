@@ -1,0 +1,155 @@
+.habit-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.habit-modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.habit-modal__label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+}
+
+/* Emoji grid */
+/* Emoji Picker */
+.habit-modal__emoji-wrapper {
+    position: relative;
+    width: max-content;
+}
+
+.habit-modal__emoji-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    font-size: 2rem;
+    border: 2px solid var(--color-border);
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.habit-modal__emoji-toggle:hover {
+    background: var(--color-bg-primary);
+    border-color: var(--color-border-strong);
+}
+
+.habit-modal__emoji-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+}
+
+.habit-modal__emoji-picker-container {
+    position: relative;
+    z-index: 1001;
+    margin-top: var(--space-xs);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: var(--radius-md);
+}
+
+.habit-modal__emoji-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+}
+
+/* Color grid */
+.habit-modal__color-grid {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.habit-modal__color-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.habit-modal__color-btn:hover {
+    transform: scale(1.1);
+}
+
+.habit-modal__color-btn--selected {
+    border-color: var(--color-text-primary);
+    box-shadow: 0 0 0 2px var(--color-bg-secondary);
+}
+
+/* Days grid */
+.habit-modal__days-grid {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.habit-modal__day-btn {
+    flex: 1;
+    padding: var(--space-sm);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.habit-modal__day-btn:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.habit-modal__day-btn--selected {
+    background: var(--color-accent-primary);
+    border-color: var(--color-accent-primary);
+    color: var(--color-text-inverse);
+}
+
+.habit-modal__error {
+    font-size: var(--font-size-sm);
+    color: var(--color-error);
+}
+
+/* Actions */
+.habit-modal__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.habit-modal__actions-right {
+    display: flex;
+    gap: var(--space-sm);
+    margin-left: auto;
+}
+
+@media (max-width: 480px) {
+    .habit-modal__emoji-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .habit-modal__days-grid {
+        flex-wrap: wrap;
+    }
+
+    .habit-modal__day-btn {
+        flex: 0 0 calc(25% - var(--space-xs));
+    }
+}

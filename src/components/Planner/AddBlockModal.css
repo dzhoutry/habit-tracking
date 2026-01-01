@@ -1,0 +1,189 @@
+.add-block-modal {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.add-block-modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.add-block-modal__label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+}
+
+/* Date input */
+.add-block-modal__date-input {
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    width: 100%;
+}
+
+.add-block-modal__date-input:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+}
+
+.add-block-modal__date-input--small {
+    width: auto;
+    flex: 1;
+}
+
+.add-block-modal__date-preview {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+/* Time row */
+.add-block-modal__time-row {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-md);
+}
+
+.add-block-modal__time-row .add-block-modal__field {
+    flex: 1;
+}
+
+.add-block-modal__time-separator {
+    padding-bottom: var(--space-sm);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+/* Select */
+.add-block-modal__select {
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    width: 100%;
+    cursor: pointer;
+}
+
+.add-block-modal__select:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+}
+
+.add-block-modal__select--small {
+    width: auto;
+}
+
+/* Colors */
+.add-block-modal__colors {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.add-block-modal__color {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.add-block-modal__color:hover {
+    transform: scale(1.1);
+}
+
+.add-block-modal__color--selected {
+    border-color: var(--color-text-primary);
+    box-shadow: 0 0 0 2px var(--color-bg-secondary);
+}
+
+/* Days selector */
+.add-block-modal__days {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.add-block-modal__day {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.add-block-modal__day:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.add-block-modal__day--selected {
+    background: var(--color-accent-primary);
+    border-color: var(--color-accent-primary);
+    color: var(--color-text-inverse);
+}
+
+/* End recurrence row */
+.add-block-modal__end-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.add-block-modal__end-input {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.add-block-modal__number-input {
+    width: 80px;
+    padding: var(--space-sm);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    text-align: center;
+}
+
+.add-block-modal__number-input:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+}
+
+.add-block-modal__end-input span {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+/* Error */
+.add-block-modal__error {
+    font-size: var(--font-size-sm);
+    color: var(--color-error);
+}
+
+/* Actions */
+.add-block-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
