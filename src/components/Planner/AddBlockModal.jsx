@@ -74,6 +74,7 @@ export default function AddBlockModal({
     initialDate,
     initialStartHour,
     initialEndHour,
+    editingBlock = null,
     hours = [],
 }) {
     const [formData, setFormData] = useState({
@@ -97,23 +98,44 @@ export default function AddBlockModal({
     // Reset form when modal opens
     useEffect(() => {
         if (isOpen) {
-            const defaultDate = initialDate || new Date();
-            setFormData({
-                title: '',
-                date: format(defaultDate, 'yyyy-MM-dd'),
-                startHour: initialStartHour !== undefined ? initialStartHour : 9,
-                endHour: initialEndHour !== undefined ? initialEndHour : 10,
-                color: '#E07A5F',
-                recurrence: 'none',
-                customDays: [],
-                endRecurrence: 'never',
-                endCount: 10,
-                endDate: format(addMonths(defaultDate, 3), 'yyyy-MM-dd'),
-            });
-            setShowCustomDays(false);
+            if (editingBlock) {
+                // Populate form with existing block data
+                setFormData({
+                    title: editingBlock.title,
+                    date: editingBlock.date, // Assuming YYYY-MM-DD
+                    startHour: editingBlock.startHour,
+                    endHour: editingBlock.endHour,
+                    color: editingBlock.color,
+                    recurrence: editingBlock.recurrence?.type || 'none',
+                    customDays: editingBlock.recurrence?.daysOfWeek || [],
+                    endRecurrence: editingBlock.recurrence?.endType || 'never',
+                    endCount: editingBlock.recurrence?.endCount || 10,
+                    endDate: editingBlock.recurrence?.endDate || '',
+                });
+
+                // Set custom days visibility based on recurrence type
+                const recType = editingBlock.recurrence?.type || 'none';
+                setShowCustomDays(recType === 'custom');
+            } else {
+                // Default / New Block
+                const defaultDate = initialDate || new Date();
+                setFormData({
+                    title: '',
+                    date: format(defaultDate, 'yyyy-MM-dd'),
+                    startHour: initialStartHour !== undefined ? initialStartHour : 9,
+                    endHour: initialEndHour !== undefined ? initialEndHour : 10,
+                    color: '#E07A5F',
+                    recurrence: 'none',
+                    customDays: [],
+                    endRecurrence: 'never',
+                    endCount: 10,
+                    endDate: format(addMonths(defaultDate, 3), 'yyyy-MM-dd'),
+                });
+                setShowCustomDays(false);
+            }
             setErrors({});
         }
-    }, [isOpen, initialDate, initialStartHour, initialEndHour]);
+    }, [isOpen, initialDate, initialStartHour, initialEndHour, editingBlock]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -220,7 +242,7 @@ export default function AddBlockModal({
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            title="Add Time Block"
+            title={editingBlock ? "Edit Time Block" : "Add Time Block"}
             size="medium"
         >
             <form className="add-block-modal" onSubmit={handleSubmit}>
@@ -383,7 +405,7 @@ export default function AddBlockModal({
                         Cancel
                     </Button>
                     <Button type="submit" variant="primary">
-                        Add Block
+                        {editingBlock ? "Save Changes" : "Add Block"}
                     </Button>
                 </div>
             </form>

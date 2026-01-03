@@ -18,6 +18,7 @@ export default function Planner() {
         toggleTask,
         getTasksForDate,
         addTimeBlock,
+        updateTimeBlock,
         deleteTimeBlock,
     } = useApp();
 
@@ -30,6 +31,7 @@ export default function Planner() {
     // Drag-to-select state
     const [dragState, setDragState] = useState(null); // { date, startHour, currentHour }
     const [modalInitData, setModalInitData] = useState(null);
+    const [editingBlock, setEditingBlock] = useState(null);
     const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
@@ -60,6 +62,8 @@ export default function Planner() {
                     switch (block.recurrence.type) {
                         case 'daily': currentDate = addDays(currentDate, 1); break;
                         case 'weekly':
+                            currentDate = addDays(currentDate, 7); // Simplified for optimization check
+                            break;
                         case 'weekdays':
                         case 'custom':
                             currentDate = addDays(currentDate, 1);
@@ -77,6 +81,11 @@ export default function Planner() {
         return Array.from(dates);
     }, [state.timeBlocks]);
 
+    /**
+     * Helper to get blocks for a specific date (handling recurrence)
+     * Duplicate logic from memo above but for rendering.
+     * Ideally, this should be centralized in AppContext or a hook.
+     */
     const getBlocksForDate = (date) => {
         const dateKey = format(date, 'yyyy-MM-dd');
         const dayOfWeek = getDay(date);
@@ -84,12 +93,16 @@ export default function Planner() {
             if (block.date === dateKey) return true;
             if (block.recurrence) {
                 const blockStartDate = new Date(block.date);
-                if (date < blockStartDate) return false;
+                // Important: recurrence start date check
+                if (date < blockStartDate && !isSameDay(date, blockStartDate)) return false;
+
                 if (block.recurrence.endDate && date > new Date(block.recurrence.endDate)) return false;
+
+                // Recurrence Days Check
                 switch (block.recurrence.type) {
                     case 'daily': return true;
-                    case 'weekly':
-                    case 'weekdays':
+                    case 'weekly': return dayOfWeek === getDay(blockStartDate);
+                    case 'weekdays': return dayOfWeek >= 1 && dayOfWeek <= 5;
                     case 'custom': return block.recurrence.daysOfWeek?.includes(dayOfWeek);
                     case 'monthly': return new Date(block.date).getDate() === date.getDate();
                     default: return false;
@@ -117,7 +130,20 @@ export default function Planner() {
         setNewTaskText('');
     };
 
-    const handleSaveBlock = (blockData) => addTimeBlock(blockData);
+    const handleBlockClick = (block, e) => {
+        e.stopPropagation(); // Prevent creation
+        setEditingBlock(block);
+        setIsAddBlockModalOpen(true);
+    };
+
+    const handleSaveBlock = (blockData) => {
+        if (editingBlock) {
+            // Update existing block
+            updateTimeBlock(editingBlock.id, blockData);
+        } else {
+            addTimeBlock(blockData);
+        }
+    };
 
     // Drag selection handlers
     const onGridMouseDown = (date, hour) => {
@@ -140,6 +166,7 @@ export default function Planner() {
                 startHour: start,
                 endHour: Math.min(end, 23.5)
             });
+            setEditingBlock(null); // Clear editing state for new block
             setIsAddBlockModalOpen(true);
             setDragState(null);
         }
@@ -147,6 +174,8 @@ export default function Planner() {
 
     const currentHourLong = currentTime.getHours() + (currentTime.getMinutes() / 60);
     const isToday = format(selectedDate, 'yyyy-MM-dd') === format(currentTime, 'yyyy-MM-dd');
+
+    const outstandingTasksCount = tasks.filter(task => !task.completed).length;
 
     return (
         <div className="planner" onMouseUp={onGridMouseUp}>
@@ -178,14 +207,14 @@ export default function Planner() {
 
             <div className="planner__content">
                 <aside className="planner__sidebar">
-                    <Button variant="primary" fullWidth onClick={() => { setModalInitData(null); setIsAddBlockModalOpen(true); }} icon="+" className="planner__add-btn">
+                    <Button variant="primary" fullWidth onClick={() => { setModalInitData(null); setEditingBlock(null); setIsAddBlockModalOpen(true); }} icon="+" className="planner__add-btn">
                         Add Block
                     </Button>
                     <MiniCalendar selectedDate={selectedDate} onSelectDate={setSelectedDate} eventsOnDates={datesWithEvents} />
                     <Card padding="medium" className="planner__tasks-card">
                         <div className="planner__tasks-header">
                             <h3>Tasks</h3>
-                            <span className="planner__tasks-count">{tasks.length}</span>
+                            <span className="planner__tasks-badge">{outstandingTasksCount}</span>
                         </div>
                         <form className="planner__add-task" onSubmit={handleAddTask}>
                             <Input placeholder="Add a task..." value={newTaskText} onChange={(e) => setNewTaskText(e.target.value)} />
@@ -252,6 +281,7 @@ export default function Planner() {
                                                             height: `${(block.endHour - block.startHour) * 60 - 4}px`,
                                                         }}
                                                         onMouseDown={(e) => e.stopPropagation()}
+                                                        onClick={(e) => handleBlockClick(block, e)}
                                                         initial={{ opacity: 0, x: -10 }}
                                                         animate={{ opacity: 1, x: 0 }}
                                                     >
@@ -345,6 +375,7 @@ export default function Planner() {
                                                                 zIndex: 5
                                                             }}
                                                             onMouseDown={(e) => e.stopPropagation()}
+                                                            onClick={(e) => handleBlockClick(block, e)}
                                                             initial={{ opacity: 0, scale: 0.95 }}
                                                             animate={{ opacity: 1, scale: 1 }}
                                                         >
@@ -403,6 +434,7 @@ export default function Planner() {
                 initialDate={modalInitData?.date || selectedDate}
                 initialStartHour={modalInitData?.startHour}
                 initialEndHour={modalInitData?.endHour}
+                editingBlock={editingBlock}
                 hours={hours}
             />
         </div>

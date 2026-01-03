@@ -1,0 +1,399 @@
+/* Landing Page V2 - Youform Style */
+
+.landing-v2 {
+    background-color: var(--color-bg-primary);
+    /* Matching app background */
+    min-height: 100vh;
+    font-family: var(--font-family);
+    overflow-x: hidden;
+    color: #1a1a1a;
+}
+
+/* Nav */
+.v2-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.v2-brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.v2-nav-items {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.v2-link {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.v2-btn-primary {
+    background: #E07A5F;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    /* Slightly squarer than V1 */
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.v2-btn-primary:hover {
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+/* Hero Grid */
+.v2-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .v2-hero {
+        grid-template-columns: 1fr 1fr;
+        /* True 50/50 split */
+        min-height: 80vh;
+    }
+}
+
+/* Left Column */
+.v2-hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.v2-badge {
+    background: #C7B9FF;
+    /* Userform purple badge */
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.v2-title {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.03em;
+}
+
+.v2-italic {
+    font-style: italic;
+    font-weight: 400;
+    /* Lighter weight for contrast */
+}
+
+.v2-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 480px;
+    color: #4a4a4a;
+}
+
+.v2-cta-wrapper {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.v2-cta-large {
+    background: #FF6B4A;
+    /* Stride Orange/Terracotta */
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    /* Neo-brutalist shadow */
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.v2-cta-large:hover {
+    box-shadow: 2px 2px 0px #000;
+    transform: translate(2px, 2px);
+    color: #000;
+}
+
+.v2-try-it-arrow {
+    position: absolute;
+    right: -120px;
+    top: 50%;
+    transform: rotate(-10deg);
+    font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+    /* Hand-drawn feel */
+    font-size: 1rem;
+    color: #4a4a4a;
+}
+
+.v2-trust-badges {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Testimonial */
+.v2-testimonial {
+    margin-top: 3rem;
+    max-width: 400px;
+}
+
+.v2-testimonial p {
+    font-size: 1.125rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.v2-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.v2-user-avatar {
+    width: 40px;
+    height: 40px;
+    background: #ccc;
+    border-radius: 50%;
+    background-image: url('https://i.pravatar.cc/100?img=12');
+    /* Placeholder avatar */
+    background-size: cover;
+}
+
+.v2-user-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.875rem;
+}
+
+/* Right Column */
+.v2-hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+}
+
+.v2-blob {
+    position: absolute;
+    top: 0;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: #FF6B4A;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    z-index: 0;
+    opacity: 0.15;
+    /* Subtle background blob */
+}
+
+/* Main Card (The "Sheet") */
+.v2-main-card {
+    background: #FFFEF9;
+    border: 3px solid #000;
+    border-radius: 12px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 450px;
+    min-height: 550px;
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.1);
+    transform: rotate(2deg);
+    /* The Youform tilt */
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.v2-card-header h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: #1a1a1a;
+}
+
+.v2-card-subtitle {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+/* Floating Habits Graphic */
+.v2-floating-habits {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    /* Space between cards */
+    margin: 2rem 0 3rem 0;
+    width: 100%;
+}
+
+.v2-floating-badge {
+    position: absolute;
+    top: -45px;
+    /* Moved higher to avoid overlap */
+    right: 15%;
+    background: #FFFFFF;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+    color: #E07A5F;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 10;
+    transform: rotate(5deg);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: floatBadge 3s ease-in-out infinite;
+}
+
+@keyframes floatBadge {
+
+    0%,
+    100% {
+        transform: rotate(5deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(5deg) translateY(-5px);
+    }
+}
+
+.v2-habit-pill {
+    background: #FFFFFF;
+    width: 90%;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    /* Uniform spacing: Checkmark <-> Emoji */
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+}
+
+/* Pile Effect Layout */
+.v2-pill-1 {
+    transform: rotate(-2deg);
+    width: 85%;
+}
+
+.v2-pill-2 {
+    transform: rotate(1.5deg);
+    width: 90%;
+}
+
+.v2-pill-3 {
+    transform: rotate(-1deg);
+    width: 80%;
+}
+
+/* Internal Pill Elements */
+.v2-pill-check {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.v2-pill-check.checked {
+    background: #81B29A;
+    /* Sage Green */
+}
+
+.v2-pill-bar {
+    height: 10px;
+    background: #F3F3F3;
+    border-radius: 99px;
+    flex: 1;
+}
+
+.v2-pill-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    /* Increased separation between emoji and text */
+    flex: 1;
+}
+
+.v2-pill-emoji {
+    font-size: 1.3rem;
+}
+
+.v2-pill-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* Vary bar widths for "natural" look */
+.v2-pill-1 .v2-pill-bar {
+    width: 70%;
+    flex: none;
+}
+
+.v2-pill-2 .v2-pill-bar {
+    width: 90%;
+    flex: none;
+}
+
+.v2-pill-3 .v2-pill-bar {
+    width: 60%;
+    flex: none;
+}
+
+.v2-card-btn {
+    width: 100%;
+    background: #81B29A;
+    color: #000;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    transition: transform 0.2s;
+}
+
+.v2-card-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}

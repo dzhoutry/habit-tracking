@@ -1,0 +1,357 @@
+/* Landing Page Scoped Styles */
+.landing-page {
+    background-color: var(--color-bg-tertiary);
+    /* Slightly warmer background for landing */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Navigation */
+.landing-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg) var(--space-2xl);
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    width: 100%;
+}
+
+.nav-logo {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xl);
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.logo-icon {
+    color: var(--color-accent-primary);
+    font-size: 0.8em;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.btn-login {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+    padding: var(--space-xs) var(--space-sm);
+}
+
+.btn-login:hover {
+    color: var(--color-text-primary);
+}
+
+.btn-cta-small {
+    background-color: var(--color-text-primary);
+    color: var(--color-bg-primary);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: transform var(--transition-fast);
+}
+
+.btn-cta-small:hover {
+    transform: translateY(-1px);
+    /* color-text-primary is dark, so hover implies opacity or scale change usually, 
+     but standard design system doesn't specify button hovers deeply. 
+     Keeping it simple. */
+    background-color: #000;
+}
+
+/* Hero Section */
+.hero-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-3xl) var(--space-lg);
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    gap: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+    .hero-section {
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-between;
+        padding: var(--space-3xl) var(--space-2xl);
+        gap: 4rem;
+        /* Add significant separation */
+    }
+
+    .hero-content {
+        flex: 1;
+        min-width: 50%;
+        /* Force it to take half space */
+        max-width: none;
+        /* Remove previous constraint */
+    }
+
+    .hero-visual {
+        flex: 1;
+        max-width: none;
+        /* Remove previous constraint */
+        display: flex;
+        justify-content: flex-end;
+        /* Push visual to the right */
+    }
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    /* Fallback */
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: var(--space-lg);
+    letter-spacing: -0.02em;
+}
+
+.highlight-text {
+    color: var(--color-accent-primary);
+    font-style: italic;
+    /* Adds a bit of 'organic' feel */
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-2xl);
+    max-width: 400px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .hero-actions {
+        align-items: flex-start;
+    }
+}
+
+.btn-cta-large {
+    background-color: var(--color-accent-primary);
+    color: #FFF;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-md), 0 0 0 4px var(--color-accent-primary-light);
+}
+
+.btn-cta-large:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 0 0 4px var(--color-accent-primary-light);
+    color: #FFF;
+    /* Ensure text stays white */
+}
+
+.hero-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+/* Hero Visual - Abstract Cards */
+.hero-visual {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visual-card {
+    background: var(--color-surface-primary);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    position: absolute;
+    width: 260px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    transition: transform var(--transition-slow);
+}
+
+.card-1 {
+    transform: rotate(-3deg) translateY(-60px);
+    z-index: 1;
+    opacity: 0.9;
+}
+
+.card-2 {
+    transform: rotate(2deg) translateY(0px) translateX(20px);
+    z-index: 2;
+}
+
+.card-3 {
+    transform: rotate(-1deg) translateY(60px) translateX(-10px);
+    z-index: 1;
+    opacity: 0.8;
+}
+
+/* Floating Badge */
+.badge-streak {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    background: #FFF;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    color: var(--color-accent-primary);
+    animation: pulse 3s infinite ease-in-out;
+    z-index: 3;
+}
+
+.check-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    font-size: 12px;
+}
+
+.check-circle.completed {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+}
+
+.line-placeholder {
+    height: 8px;
+    background-color: var(--color-bg-tertiary);
+    border-radius: var(--radius-full);
+    flex: 1;
+}
+
+/* Features Section */
+.features-section {
+    padding: var(--space-3xl) var(--space-lg);
+    background-color: var(--color-bg-primary);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+}
+
+.section-header h2 {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-primary);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.feature-card {
+    background: var(--color-surface-primary);
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    transition: transform var(--transition-normal);
+    border: 1px solid var(--color-border);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent-tertiary);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+    display: inline-block;
+    padding: var(--space-sm);
+    background: var(--color-bg-tertiary);
+    border-radius: var(--radius-xl);
+    color: var(--color-accent-primary);
+}
+
+.feature-card h3 {
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-xl);
+}
+
+/* Footer */
+.landing-footer {
+    padding: var(--space-xl) var(--space-lg);
+    background-color: #FFF;
+    /* Clean white footer */
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.logo-text {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+}
+
+.footer-brand p {
+    font-size: var(--font-size-xs);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--space-lg);
+}
+
+.footer-links a {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.footer-links a:hover {
+    color: var(--color-accent-primary);
+}
